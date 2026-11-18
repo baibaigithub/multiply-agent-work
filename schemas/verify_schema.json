@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "final_decision",
+    "summary",
+    "passed_count",
+    "failed_count",
+    "items"
+  ],
+  "properties": {
+    "final_decision": {
+      "type": "string",
+      "enum": ["PASS", "FAIL"]
+    },
+    "summary": { "type": "string" },
+    "passed_count": { "type": "integer" },
+    "failed_count": { "type": "integer" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "evidence", "gap_if_fail", "blocked_needs_human"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string", "enum": ["PASS", "FAIL"] },
+          "evidence": { "type": "string" },
+          "gap_if_fail": { "type": "string" },
+          "blocked_needs_human": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

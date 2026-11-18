@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "overall_verdict",
+    "data_and_usability_summary",
+    "self_review_notes",
+    "issues"
+  ],
+  "properties": {
+    "overall_verdict": {
+      "type": "string",
+      "description": "Overall assessment of the audited artifact."
+    },
+    "data_and_usability_summary": {
+      "type": "string",
+      "description": "First-principles summary focusing on data accuracy, logic soundness, and end-to-end usability."
+    },
+    "self_review_notes": {
+      "type": "string",
+      "description": "Mandatory self-critique confirming every issue has concrete evidence, is non-trivial, and has feasible fix & Pass/Fail criteria."
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "priority",
+          "module",
+          "title",
+          "location_or_section",
+          "evidence_quote",
+          "first_principle_flaw",
+          "recommended_fix",
+          "acceptance_criteria",
+          "blocked_needs_human",
+          "human_support_needed"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "priority": { "type": "string", "enum": ["P0", "P1", "P2"] },
+          "module": { "type": "string" },
+          "title": { "type": "string" },
+          "location_or_section": { "type": "string" },
+          "evidence_quote": { "type": "string" },
+          "first_principle_flaw": { "type": "string" },
+          "recommended_fix": { "type": "string" },
+          "acceptance_criteria": { "type": "string" },
+          "blocked_needs_human": {
+            "type": "boolean",
+            "description": "True if this issue cannot be resolved by editing files alone (e.g., needs business decision, missing runtime env, or external official files)."
+          },
+          "human_support_needed": {
+            "type": "string",
+            "description": "What decision, file, or environment support is required from the user when blocked_needs_human is true; empty string otherwise."
+          }
+        }
+      }
+    }
+  }
+}
